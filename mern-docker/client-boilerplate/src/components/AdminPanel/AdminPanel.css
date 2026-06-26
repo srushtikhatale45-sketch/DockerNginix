@@ -1,0 +1,55 @@
+.AdminPanel {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20;
+  height: 100vh;
+}
+
+.admintitle {
+  text-align: center;
+}
+.productpanel {
+  border: 2px solid black;
+  margin: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.productadContainer {
+  border: 2px solid #ddd;
+  padding: 10px;
+  margin: 2px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.imgntitle img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.buttons button {
+  margin-right: 5px;
+}
+.getProductDetails {
+  border: 2px solid black;
+  margin: 50px 10px;
+  padding: 10px 20px;
+}
+
+.updateUI {
+  display: flex;
+}
+
+.formcon {
+  margin: 5px 100px;
+  padding: 10px;
+}
+.form-container2 {
+  padding: 20px 50px;
+}
