@@ -41,11 +41,11 @@ jobs:
             git pull origin main
 
             # Create .env file from GitHub Secrets
-            cat > server-boilerplate/.env << 'ENVEOF'
+            cat > server-boilerplate/.env << EOF
             PORT=${{ secrets.PORT }}
             DB_URL=${{ secrets.DB_URL }}
             PUBLIC_DIR=${{ secrets.PUBLIC_DIR }}
-            ENVEOF
+            EOF
 
             # Rebuild and restart containers
             docker compose down
