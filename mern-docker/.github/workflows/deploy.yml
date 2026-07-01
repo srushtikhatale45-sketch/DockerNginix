@@ -6,7 +6,6 @@ on:
 
 jobs:
 
-  # ── JOB 1: Test ────────────────────────────────────────
   test:
     runs-on: ubuntu-latest
     steps:
@@ -20,17 +19,10 @@ jobs:
 
       - name: Test backend
         run: |
-          cd server-boilerplate
+          cd mern-docker/server-boilerplate
           npm install
           npm test
 
-      - name: Test frontend
-        run: |
-          cd client-boilerplate
-          npm install
-          npm test
-
-  # ── JOB 2: Deploy ──────────────────────────────────────
   deploy:
     runs-on: ubuntu-latest
     needs: test
@@ -42,20 +34,20 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd /var/www/sahajafashion
+            cd /var/www/sahajafashion/mern-docker
 
             # Pull latest code
             git reset --hard HEAD
             git pull origin main
 
-            # Update MongoDB URL in docker-compose
-            export DB_URL="${{ secrets.DB_URL }}"
+            # Create .env file from GitHub Secrets
+            cat > server-boilerplate/.env << 'ENVEOF'
+            PORT=${{ secrets.PORT }}
+            DB_URL=${{ secrets.DB_URL }}
+            PUBLIC_DIR=${{ secrets.PUBLIC_DIR }}
+            ENVEOF
 
-            # Stop old containers
+            # Rebuild and restart containers
             docker compose down
-
-            # Rebuild and start fresh
             docker compose up -d --build
-
-            # Remove unused images to save disk space
             docker image prune -f
