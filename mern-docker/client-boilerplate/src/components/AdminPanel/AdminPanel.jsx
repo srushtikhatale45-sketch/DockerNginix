@@ -5,6 +5,7 @@ import AdminProduct from "./AdminProduct";
 import { useNavigate } from "react-router-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
+import { BASE_URL } from "../../config";
 
 function AdminPanel({ products, handleDelete, handleUpdate }) {
   const [product, setProduct] = useState({});
@@ -22,7 +23,7 @@ function AdminPanel({ products, handleDelete, handleUpdate }) {
   const getProductsFromAPI = async (id) => {
     console.log("getProductDetails");
     try {
-      const response = await axios.get(`http://localhost:8000/products/${id}`);
+      const response = await axios.get(`${BASE_URL}/products/${id}`);
       console.log("getProductDetails ->", response.data);
       setProductDetails(response.data);
       setProduct(response.data);

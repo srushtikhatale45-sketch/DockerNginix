@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import "./index.css";
 import HandleProduct from "./components/AddProduct/HandleProduct";
 import Home from "./components/Home/Home";
+import { BASE_URL } from "./config";
 function App() {
   const [products, setProducts] = useState([]);
   const [isError, setIsError] = useState(null);
@@ -18,7 +19,7 @@ function App() {
     const getProductsFromAPI = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("http://localhost:8000/products");
+        const response = await axios.get(`${BASE_URL}/products`);
         setProducts(response.data);
       } catch (err) {
         console.log(err);
@@ -33,7 +34,7 @@ function App() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:8000/products/${id}`);
+      const res = await axios.delete(`${BASE_URL}/products/${id}`);
       if (res.data._id) {
         setProducts(products.filter((p) => p._id !== res.data._id));
       }
@@ -44,7 +45,7 @@ function App() {
 
   const addProduct = async (product) => {
     try {
-      const res = await axios.post("http://localhost:8000/products", product);
+      const res = await axios.post(`${BASE_URL}/products`, product);
       console.log("addproduct postReq", res);
       setProducts((prev) => [...prev, res.data]);
     } catch (error) {
@@ -56,7 +57,7 @@ function App() {
     console.log("inside Update ASync");
     try {
       const res = await axios.patch(
-        `http://localhost:8000/products/${id}`,
+        `${BASE_URL}/products/${id}`,
         product
       );
       console.log("Product updated:", res.data);

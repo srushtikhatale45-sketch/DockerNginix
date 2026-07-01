@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./AddProduct.css"; // Import the CSS file
-
+import { BASE_URL } from "../../config";
 const handleProduct = ({ productIdToUpdate, addProduct }) => {
   const [product, setProduct] = useState({});
 
@@ -28,7 +28,7 @@ const handleProduct = ({ productIdToUpdate, addProduct }) => {
   const fetchProductData = async (productId) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/products/${productId}`
+        `${BASE_URL}/products/${productId}`
       );
       setProduct(response.data);
     } catch (error) {
