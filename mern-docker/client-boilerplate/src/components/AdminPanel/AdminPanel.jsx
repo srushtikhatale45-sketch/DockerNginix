@@ -5,7 +5,7 @@ import AdminProduct from "./AdminProduct";
 import { useNavigate } from "react-router-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
-import { BASE_URL } from "../../config";
+import { BASE_URL } from "../../api";
 
 function AdminPanel({ products, handleDelete, handleUpdate }) {
   const [product, setProduct] = useState({});

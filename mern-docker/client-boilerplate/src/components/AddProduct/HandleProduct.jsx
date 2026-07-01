@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./AddProduct.css"; // Import the CSS file
-import { BASE_URL } from "../../config";
+import { BASE_URL } from "../../api";
 const handleProduct = ({ productIdToUpdate, addProduct }) => {
   const [product, setProduct] = useState({});
 

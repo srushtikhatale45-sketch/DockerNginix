@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import "./index.css";
 import HandleProduct from "./components/AddProduct/HandleProduct";
 import Home from "./components/Home/Home";
-import { BASE_URL } from "./config";
+import { BASE_URL } from "./api";
 function App() {
   const [products, setProducts] = useState([]);
   const [isError, setIsError] = useState(null);
