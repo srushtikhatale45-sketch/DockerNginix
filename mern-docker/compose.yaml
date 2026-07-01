@@ -1,6 +1,4 @@
-version: "3.8"
 services:
-
   web:
     depends_on:
       - api
@@ -13,9 +11,8 @@ services:
     build: ./server-boilerplate
     ports:
       - "8000:8000"
-    environment:
-      PORT: 8000
-      DB_URL: ${DB_URL}        # reads from environment variable
+    env_file:
+      - ./server-boilerplate/.env
     restart: always
 
   nginx:
@@ -28,4 +25,5 @@ services:
       - "443:443"
     volumes:
       - ./nginx/sites-available/sahajafashion.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     restart: always
