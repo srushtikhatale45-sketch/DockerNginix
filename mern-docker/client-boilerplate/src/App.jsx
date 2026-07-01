@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 import HandleProduct from "./components/AddProduct/HandleProduct";
-
+import Home from "./components/Home/Home";
 function App() {
   const [products, setProducts] = useState([]);
   const [isError, setIsError] = useState(null);
@@ -73,7 +73,7 @@ function App() {
           <nav className="navbar">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link to="/" className="nav-link">
+                <Link to="/home" className="nav-link">
                   Home
                 </Link>
               </li>
@@ -96,6 +96,7 @@ function App() {
           </nav>
 
           <Routes>
+            <Route path="/home" element={<Home />} />
             <Route path="/" element={<ProductList products={products} />} />
             <Route
               path="/admin"
